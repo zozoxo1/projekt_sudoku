@@ -1,6 +1,13 @@
 window.addEventListener('DOMContentLoaded', () => {
     loadGrid();
+    generateSudoku();
 });
+
+function generateSudoku() {
+    const sudoku = new Sudoku();
+    sudoku.generate();
+    sudoku.show();
+}
 
 function loadGrid() {
     let grid = document.getElementById("game-div");
