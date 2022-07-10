@@ -1,0 +1,126 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+
+/**========================================================================
+ *                           Main Wrapper
+ *========================================================================**/
+
+#main-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+/**========================================================================
+ *                           Input Div
+ *========================================================================**/
+
+#input-div {
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#input-div .key-input-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#input-div .key-input-div {
+    height: 50px;
+    padding: 0 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    background: rgb(150, 174, 153);
+    color: rgb(29, 41, 33);
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+#input-div .key-input-div:hover {
+    background: rgb(255, 255, 255);
+    color: black;
+}
+
+#input-div .key-input-div.disabled {
+    background: rgb(227, 227, 227);
+    box-shadow: none;
+    color: rgb(123, 121, 121);
+    cursor: not-allowed;
+}
+
+#input-div .key-input-div.disabled:hover {
+    color: rgb(123, 121, 121);
+}
+
+#input-div .key-input-div.selected-key {
+    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.75);
+    transform: scale(1.2);
+    background: white;
+    color: black;
+}
+
+
+/**========================================================================
+ *                           Game Div
+ *========================================================================**/
+
+#game-div {
+    flex-basis: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-div .game-row {
+    display: flex;
+    border: 1px solid black;
+}
+
+#game-div .game-part {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(150px + 6px);
+    border: 1px solid black;
+}
+
+#game-div .game-part .game-part-input {
+    display: flex;
+    height: 50px;
+    width: 50px;
+    border: .5px solid black;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+#game-div .game-part .game-part-input.selected {
+    background: rgb(205, 203, 203);
+    box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, 0.75);
+    color: black;
+}
+
+#game-div .break {
+    flex-basis: 100%;
+    height: 0;
+}
