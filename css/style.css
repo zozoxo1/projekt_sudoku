@@ -117,3 +117,51 @@ body, html {
     flex-basis: 100%;
     height: 0;
 }
+
+
+/**========================================================================
+ *                           Tools
+ *========================================================================**/
+
+#tools {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#tools .tool {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid rgb(150, 174, 153);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#tools .tool:hover {
+    background: rgb(150, 174, 153);
+}
+
+#tools .tool-hint {
+
+}
+
+#tools .tool-new-game {
+    background: rgb(150, 174, 153);
+    color: rgb(29, 41, 33);
+}
+
+#tools .tool-new-game:hover {
+    background: rgb(92, 110, 94);
+    border: 1px solid rgb(92, 110, 94);
+    color: black;
+}
+
+#tools .tool-solve {
+    border: 2px solid rgb(159, 110, 77);
+}
+
+#tools .tool-solve:hover {
+    background: rgb(159, 110, 77);
+    color: white;
+}
