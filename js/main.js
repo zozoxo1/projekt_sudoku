@@ -1,11 +1,34 @@
-const sudoku = new Sudoku();
+let sudoku = new Sudoku();
 
 window.addEventListener('DOMContentLoaded', () => {
     loadGrid();
     generateSudoku();
+
+    let tippTool = document.getElementsByClassName("tool-hint")[0];
+    let newGameTool = document.getElementsByClassName("tool-new-game")[0];
+    let solveTool = document.getElementsByClassName("tool-solve")[0];
+
+    tippTool.addEventListener('click', () => {
+        sudoku.hint();
+        loadGrid();
+    });
+
+    newGameTool.addEventListener('click', () => {
+        let gameDiv = document.getElementById("game-div");
+        gameDiv.innerHTML = "";
+
+        loadGrid();
+        generateSudoku();
+    });
+
+    solveTool.addEventListener('click', () => {
+        sudoku.solve();
+    });
+
 });
 
 function generateSudoku() {
+    sudoku = new Sudoku();
     sudoku.generate();
     sudoku.show();
 }
