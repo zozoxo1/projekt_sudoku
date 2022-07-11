@@ -150,14 +150,7 @@ class Sudoku {
     }
 
     show() {
-        let numbersToShow = 80; // TODO: make constant or changeable in constructor
-
-        // FIXME: genau 36 nummern anzeigen
-        /*
-        *   array erzeugen mit allen indices
-        *   array shuffeln
-        *   erste numbersToShow indices anzeigen 
-        */
+        let numbersToShow = 36; // TODO: make constant or changeable in constructor
         let objArray = [];
 
         for(let i = 0; i < 9; i++) {
