@@ -1,10 +1,11 @@
+const sudoku = new Sudoku();
+
 window.addEventListener('DOMContentLoaded', () => {
     loadGrid();
     generateSudoku();
 });
 
 function generateSudoku() {
-    const sudoku = new Sudoku();
     sudoku.generate();
     sudoku.show();
 }
@@ -143,4 +144,9 @@ function deactivateEnter() {
 
 function submitNumber(cell, number) {
     cell.getElementsByTagName("span")[0].innerText = number;
+
+    if(sudoku.hasWon()) {
+        let gameDiv = document.getElementById("game-div");
+        gameDiv.style.color = "green";
+    }
 }

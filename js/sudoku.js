@@ -2,6 +2,7 @@ class Sudoku {
 
     constructor() {
         this.grid = Array(9).fill(null).map(() => Array(9));
+
         Array.prototype.shuffle = this.#arrayShuffle;
     }
 
@@ -149,8 +150,7 @@ class Sudoku {
     }
 
     show() {
-        let numbersToShow = 36; // TODO: make constant or changeable in constructor
-        let numbersShowed = 0;
+        let numbersToShow = 80; // TODO: make constant or changeable in constructor
 
         // FIXME: genau 36 nummern anzeigen
         /*
@@ -158,19 +158,47 @@ class Sudoku {
         *   array shuffeln
         *   erste numbersToShow indices anzeigen 
         */
-        
+        let objArray = [];
+
         for(let i = 0; i < 9; i++) {
             for(let j = 0; j < 9; j++) {
-                if(Math.floor(Math.random() * 10) > 5
-                    && numbersShowed < numbersToShow) {
-                    let id = this.indexToId(i, j);
-                    let value = this.grid[i][j];
-                    document.getElementById(id).innerText = value;
-                    numbersShowed++;
+                // i = height
+                // j = width
+                const object = {
+                    x: j,
+                    y: i
+                };
+
+                objArray.push(object);
+            }
+        }
+
+        objArray.shuffle();
+
+        objArray = objArray.slice(0, numbersToShow);
+
+        objArray.forEach((element) => {
+            let id = this.indexToId(element.y, element.x);
+            let value = this.grid[element.y][element.x];
+            document.getElementById(id).innerText = value;
+        });
+
+    }
+
+    hasWon() {
+        for(let i = 0; i < 9; i++) {
+            for(let j = 0; j < 9; j++) {
+                let id = this.indexToId(i, j);
+                let gridValue = this.grid[i][j];
+                let idValue = document.getElementById(id).innerText;
+
+                if(gridValue != idValue) {
+                    return false;
                 }
             }
         }
 
+        return true;
     }
 
 }
