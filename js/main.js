@@ -77,69 +77,26 @@ function deselectCell(cell) {
 function activateKeyboard() {
     let keyBoardKeys = document.getElementsByClassName("key-input-div");
     for(let key of keyBoardKeys) {
+        key.onclick = () => handleInput(key);
         key.classList.contains("disabled") ? key.classList.remove("disabled") : undefined;
-        key.classList.contains("selected-key") ? key.classList.remove("selected-key") : undefined;
-
-        if(key.innerText !== "ENTER") {
-            key.addEventListener('click', () => {
-                for (let key of keyBoardKeys) {
-                    key.classList.contains("selected-key") ? key.classList.remove("selected-key") : undefined;
-                }
-    
-                key.classList.add("selected-key");
-                activateEnter();
-            });
-        }
     }
-
-    deactivateEnter();
 }
 
 function deactivateKeyboard() {
     let keyBoardKeys = document.getElementsByClassName("key-input-div");
     for(let key of keyBoardKeys) {
+        key.onclick = null;
         key.classList.contains("disabled") ? undefined : key.classList.add("disabled");
-        key.classList.contains("selected-key") ? key.classList.remove("selected-key") : undefined;
-
-        key.removeEventListener('click', () => {
-            for (let key of keyBoardKeys) {
-                key.classList.contains("selected-key") ? key.classList.remove("selected-key") : undefined;
-            }
-
-            key.classList.add("selected-key");
-            activateEnter();
-        });
     }
-
-    deactivateEnter();
 }
 
-function activateEnter() {
-    let enterButton = document.getElementById("enter-button");
-    enterButton.classList.remove("disabled");
+function handleInput(key) {
+    let selectedCell = document.getElementsByClassName("selected")[0];
+    let selectedKeyboardValue = key.innerText;
 
-    enterButton.addEventListener('click', () => {
-        let selectedCell = document.getElementsByClassName("selected")[0];
-        let selectedKeyboardValue = document.getElementsByClassName("selected-key")[0].innerText;
-
-        submitNumber(selectedCell, selectedKeyboardValue);
-        deactivateKeyboard();
-        deselectAllCells();
-    });
-}
-
-function deactivateEnter() {
-    let enterButton = document.getElementById("enter-button");
-    enterButton.classList.add("disabled");
-
-    enterButton.removeEventListener('click', () => {
-        let selectedCell = document.getElementsByClassName("selected")[0].id;
-        let selectedKeyboardValue = document.getElementsByClassName("selected-key")[0].innerText;
-
-        submitNumber(selectedCell, selectedKeyboardValue);
-        deactivateKeyboard();
-        deselectAllCells();
-    });
+    deselectAllCells();
+    submitNumber(selectedCell, selectedKeyboardValue);
+    deactivateKeyboard();
 }
 
 function submitNumber(cell, number) {

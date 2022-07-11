@@ -70,13 +70,6 @@ body, html {
     color: rgb(123, 121, 121);
 }
 
-#input-div .key-input-div.selected-key {
-    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.75);
-    transform: scale(1.2);
-    background: white;
-    color: black;
-}
-
 
 /**========================================================================
  *                           Game Div

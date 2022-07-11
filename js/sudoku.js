@@ -180,7 +180,7 @@ class Sudoku {
         objArray.forEach((element) => {
             let id = this.indexToId(element.y, element.x);
             let value = this.grid[element.y][element.x];
-            document.getElementById(id).innerText = value;
+            document.getElementById(id).getElementsByTagName('span')[0].innerText = value;
         });
 
     }
