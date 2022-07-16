@@ -1,3 +1,5 @@
+import Sudoku from "./sudoku.js";
+
 let sudoku = new Sudoku();
 let inputCheck = false;
 let resultCheck = false;

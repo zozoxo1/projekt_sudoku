@@ -1,4 +1,4 @@
-class Sudoku {
+export default class Sudoku {
 
     constructor() {
         this.grid = Array(9).fill(null).map(() => Array(9));
