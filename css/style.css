@@ -25,17 +25,18 @@ body, html {
  *========================================================================**/
 
 #input-div {
-    flex-basis: 30%;
+    flex-basis: 40%;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-right: 10px;
 }
 
 #input-div .key-input-row {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 #input-div .key-input-div {
@@ -76,10 +77,11 @@ body, html {
  *========================================================================**/
 
 #game-div {
-    flex-basis: 70%;
+    margin-left: 5px;
+    flex-basis: 40%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 
@@ -135,6 +137,7 @@ body, html {
     align-items: center;
     margin-block: 20px;
     user-select: none;
+    flex-wrap: wrap;
 }
 
 #tools .tool {
@@ -143,6 +146,7 @@ body, html {
     border-radius: 10px;
     border: 2px solid rgb(150, 174, 153);
     font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
 }
 
 #tools .tool:hover {
@@ -235,4 +239,27 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+
+/**========================================================================
+ *                           Media Querys
+ *========================================================================**/
+
+ @media screen and (max-width: 490px) {
+    #game-div {
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #game-div {
+        transform: scale(0.6);
+    }
+}
+
+@media screen and (max-width: 300px) {
+    #game-div {
+        transform: scale(0.5);
+    }
 }
