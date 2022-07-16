@@ -1,6 +1,11 @@
 let sudoku = new Sudoku();
+let inputCheck = false;
+let resultCheck = false;
 
 window.addEventListener('DOMContentLoaded', () => {
+    inputCheck = isSettingActive("inputCheckSetting");
+    // resultCheck = isSettingActive("resultCheckSetting");
+
     loadGrid();
     generateSudoku();
 
@@ -9,8 +14,14 @@ window.addEventListener('DOMContentLoaded', () => {
     let solveTool = document.getElementsByClassName("tool-solve")[0];
 
     tippTool.addEventListener('click', () => {
-        sudoku.hint();
-        loadGrid();
+        const hintPart = sudoku.hint();
+        
+        if (hintPart !== null) {
+            deselectAllCells();
+            selectCell(hintPart.id);
+        }
+
+        checkForWin();
     });
 
     newGameTool.addEventListener('click', () => {
@@ -19,10 +30,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
         loadGrid();
         generateSudoku();
+        checkForWin();
     });
 
     solveTool.addEventListener('click', () => {
         sudoku.solve();
+        checkWrongInputs();
+        checkForWin();
+    });
+
+    inputCheckSetting.addEventListener('change', () => {
+        inputCheck = isSettingActive("inputCheckSetting");
+        checkWrongInputs();
+    });
+
+    resultCheckSetting.addEventListener('change', () => {
+        resultCheck = isSettingActive("resultCheckSetting");
     });
 
 });
@@ -122,11 +145,50 @@ function handleInput(key) {
     deactivateKeyboard();
 }
 
-function submitNumber(cell, number) {
-    cell.getElementsByTagName("span")[0].innerText = number;
-
+function checkForWin() {
     if(sudoku.hasWon()) {
         let gameDiv = document.getElementById("game-div");
         gameDiv.style.color = "green";
+    } else {
+        let gameDiv = document.getElementById("game-div");
+        gameDiv.style.color = "black";
     }
+}
+
+function submitNumber(cell, number) {
+    cell.getElementsByTagName("span")[0].innerText = number;
+    const isInputCorrect = sudoku.checkInput(cell.id, number);
+
+    if (inputCheck) {
+        checkWrongInputs();
+    }
+
+    checkForWin();
+}
+
+function checkWrongInputs() {
+    for(let row = 0; row < 3; row++) {
+        for(let part = 0; part < 3; part++) {
+            for(let cell = 0; cell < 9; cell++) {
+                let cellId = `${row}${part}${cell}`;
+                let cellElement = document.getElementById(cellId);
+                let cellElementText = cellElement.getElementsByTagName("span")[0].innerText;
+                let isInputCorrect = sudoku.checkInput(cellId, cellElementText);
+
+                if (cellElementText !== "") {
+                    isInputCorrect ? cellElement.classList.remove("wrong-input") : cellElement.classList.add("wrong-input");
+                } else {
+                    cellElement.classList.remove("wrong-input");
+                }
+
+                if (!inputCheck) {
+                    cellElement.classList.remove("wrong-input");
+                }
+            }
+        }
+    }
+}
+
+function isSettingActive(settingId) {
+    return document.getElementById(settingId).checked;
 }

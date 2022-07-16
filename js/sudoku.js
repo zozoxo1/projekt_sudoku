@@ -106,7 +106,8 @@ class Sudoku {
             for(let j = 0; j < 9; j++) {
                 let id = this.indexToId(i, j);
                 let value = this.grid[i][j];
-                document.getElementById(id).innerText = value;
+                let element = document.getElementById(id);
+                element.getElementsByTagName('span')[0].innerText = value;
             }
         }
     }
@@ -179,7 +180,39 @@ class Sudoku {
     }
 
     hint() {
-        // TODO: implement
+        let gamePartInputs = document.getElementsByClassName('game-part-input');
+        let emptyInputs = [];
+
+        for (let part of gamePartInputs) {
+            let gamePartSpan = part.getElementsByTagName('span')[0];
+
+            if (gamePartSpan.innerText === "") {
+                emptyInputs.push(part);
+            }
+        }
+
+        if (emptyInputs.length > 0) {
+            let randomInput = emptyInputs[Math.floor(Math.random() * emptyInputs.length)];
+            let randomInputId = randomInput.id;
+            let randomInputIndex = this.idToIndex(randomInputId[0], randomInputId[1], randomInputId[2]);
+
+            let value = this.grid[randomInputIndex[0]][randomInputIndex[1]];
+            randomInput.getElementsByTagName('span')[0].innerText = value;
+
+            return randomInput;
+        }
+
+        return null;
+    }
+
+    checkInput(cellId, number) {
+        let index = this.idToIndex(cellId[0], cellId[1], cellId[2]);
+
+        if(this.grid[index[0]][[index[1]]] == number) {
+            return true;
+        }
+
+        return false;
     }
 
     hasWon() {

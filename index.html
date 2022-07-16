@@ -16,8 +16,8 @@
     <div id="main-wrapper">
         <div id="tools">
             <div class="tool tool-hint"><span>Tipp</span></div>
-            <div class="tool tool-new-game"><span>Neues Spiel</span></div>
             <div class="tool tool-solve"><span>Ergebnis anzeigen</span></div>
+            <div class="tool tool-new-game"><span>Neues Spiel</span></div>
         </div>
         <div id="input-div">
             <div class="key-input-row">
@@ -32,10 +32,25 @@
                 <div class="key-input-div disabled"><span>7</span></div>
                 <div class="key-input-div disabled"><span>8</span></div>
                 <div class="key-input-div disabled"><span>9</span></div>
+                <div class="key-input-div disabled"><span></span></div>
             </div>
         </div>
 
         <div id="game-div"></div>
+
+        <div id="settings">
+            <p>Input Check:</p>
+            <label class="switch">
+                <input type="checkbox" checked id="inputCheckSetting">
+                <span class="slider round"></span>
+            </label>
+            
+            <!--<p>Result Check:</p>
+            <label class="switch">
+                <input type="checkbox" id="resultCheckSetting">
+                <span class="slider round"></span>
+            </label>-->
+        </div>
     </div>
 </body>
 </html>
